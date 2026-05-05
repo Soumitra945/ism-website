@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISM ESE Preparation Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Ionicons for some premium icons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar glass-panel">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <ion-icon name="server-outline"></ion-icon>
+                    <span>ISM ESE Prep</span>
+                </div>
+            </div>
+            
+            <div class="pattern-info">
+                <h4>Exam Pattern</h4>
+                <div class="pattern-badge badge-10m">First 3 Modules: 10 Marks</div>
+                <div class="pattern-badge badge-40m">Last 3 Modules: 40 Marks</div>
+            </div>
+
+            <nav class="module-nav" id="module-nav">
+                <!-- Navigation buttons will be dynamically injected here -->
+            </nav>
+            
+            <div class="sidebar-divider" style="height: 1px; background: var(--glass-border); margin: 20px 0;"></div>
+            
+            <button class="nav-btn" id="mock-exam-btn" style="background: rgba(139, 92, 246, 0.1); border-color: rgba(139, 92, 246, 0.3); color: var(--accent-purple);">
+                <div class="mod-num" style="background: var(--accent-gradient); color: white;"><ion-icon name="document-text"></ion-icon></div>
+                <span class="mod-name" style="font-weight: 600;">Mock Exam Sets</span>
+            </button>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content glass-panel" id="main-content">
+            <div class="welcome-screen" id="welcome-screen">
+                <ion-icon name="hardware-chip-outline" class="welcome-icon"></ion-icon>
+                <h1>Welcome to ISM ESE Preparation</h1>
+                <p>Select a module from the sidebar to view notes, questions, and answers.</p>
+                <p class="reference-text">Based on: Robert Spalding, "Storage Networks: The Complete Reference"</p>
+            </div>
+
+            <!-- Dynamic Module Content -->
+            <div class="module-view hidden" id="module-view">
+                <header class="module-header">
+                    <h2 id="module-title">Module Title</h2>
+                    <span id="module-marks" class="marks-badge"></span>
+                </header>
+
+                <div class="tab-container">
+                    <button class="tab-btn active" data-target="notes-tab">Study Notes</button>
+                    <button class="tab-btn" data-target="practice-tab">Practice Questions</button>
+                </div>
+
+                <div class="tab-content">
+                    <div id="notes-tab" class="tab-pane active">
+                        <div class="content-card">
+                            <h3>Key Concepts</h3>
+                            <div id="notes-content" class="markdown-body">
+                                <!-- Notes injected here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="practice-tab" class="tab-pane hidden">
+                        <div class="content-card">
+                            <h3>Important Questions</h3>
+                            <p class="subtitle">Try to answer these before checking the solution!</p>
+                            <div id="questions-container" class="questions-list">
+                                <!-- Questions injected here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mock Exam View -->
+            <div class="module-view hidden" id="mock-view">
+                <header class="module-header">
+                    <h2>Exam Question Sets</h2>
+                    <span class="marks-badge badge-40m">50 Marks Total</span>
+                </header>
+
+                <div class="tab-content" style="padding-top: 0;">
+                    <div class="content-card" style="margin-top: 30px;">
+                        <p class="subtitle" style="margin-bottom: 20px;">These sets are generated based on the exam pattern: 10 marks from Modules 1-3, and 40 marks from Modules 4-6.</p>
+                        <div id="mock-container" class="questions-list">
+                            <!-- Mock Exams injected here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
