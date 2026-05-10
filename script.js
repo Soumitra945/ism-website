@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const questionsContainer = document.getElementById('questions-container');
     const mockContainer = document.getElementById('mock-container');
     const mockExamBtn = document.getElementById('mock-exam-btn');
+    const pyqView = document.getElementById('pyq-view');
+    const pyqContainer = document.getElementById('pyq-container');
+    const pyqBtn = document.getElementById('pyq-btn');
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
 
@@ -41,6 +44,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // PYQ Button Logic
+    if (pyqBtn) {
+        pyqBtn.addEventListener('click', () => {
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            pyqBtn.classList.add('active');
+            loadPYQ();
+        });
+    }
+
     // Tab Switching Logic
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -58,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadModule(moduleData) {
         welcomeScreen.classList.add('hidden');
         if(mockView) mockView.classList.add('hidden');
+        if(pyqView) pyqView.classList.add('hidden');
         moduleView.classList.remove('hidden');
 
         // Reset to first tab
@@ -97,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadMockExams() {
         welcomeScreen.classList.add('hidden');
         moduleView.classList.add('hidden');
+        if(pyqView) pyqView.classList.add('hidden');
         if(mockView) mockView.classList.remove('hidden');
         
         mockContainer.innerHTML = '';
@@ -147,6 +161,36 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             mockContainer.appendChild(setDiv);
+        }
+    }
+
+    function loadPYQ() {
+        welcomeScreen.classList.add('hidden');
+        moduleView.classList.add('hidden');
+        if(mockView) mockView.classList.add('hidden');
+        if(pyqView) pyqView.classList.remove('hidden');
+        
+        pyqContainer.innerHTML = '';
+
+        if (typeof modelPaper2024 !== 'undefined') {
+            modelPaper2024.forEach((sectionData) => {
+                const sectionDiv = document.createElement('div');
+                sectionDiv.style.marginBottom = '40px';
+                sectionDiv.innerHTML = `<h3 style="color: var(--accent-blue); border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; margin-bottom: 20px;">${sectionData.section}</h3>`;
+                
+                sectionData.questions.forEach((qObj) => {
+                    sectionDiv.innerHTML += `
+                        <div class="question-item">
+                            <div class="question-text">${qObj.q} <span style="float:right; color:var(--text-secondary); font-size: 12px;">[${qObj.marks} Marks | ${qObj.co}]</span></div>
+                            <button class="show-answer-btn" onclick="toggleAnswer(this)">
+                                <ion-icon name="eye-outline"></ion-icon> Show Answer
+                            </button>
+                            <div class="answer-box hidden">${qObj.a}</div>
+                        </div>
+                    `;
+                });
+                pyqContainer.appendChild(sectionDiv);
+            });
         }
     }
 

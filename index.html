@@ -43,6 +43,10 @@
                 <div class="mod-num" style="background: var(--accent-gradient); color: white;"><ion-icon name="document-text"></ion-icon></div>
                 <span class="mod-name" style="font-weight: 600;">Mock Exam Sets</span>
             </button>
+            <button class="nav-btn" id="pyq-btn" style="background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); color: #10b981; margin-top: 10px;">
+                <div class="mod-num" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white;"><ion-icon name="school-outline"></ion-icon></div>
+                <span class="mod-name" style="font-weight: 600;">PYQ 2024-25 Model Answers</span>
+            </button>
         </aside>
 
         <!-- Main Content Area -->
@@ -83,6 +87,23 @@
                             <div id="questions-container" class="questions-list">
                                 <!-- Questions injected here -->
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PYQ View -->
+            <div class="module-view hidden" id="pyq-view">
+                <header class="module-header">
+                    <h2>Previous Year Paper: AY 2024-25</h2>
+                    <span class="marks-badge badge-40m">Model Answers</span>
+                </header>
+
+                <div class="tab-content" style="padding-top: 0;">
+                    <div class="content-card" style="margin-top: 30px;">
+                        <p class="subtitle" style="margin-bottom: 20px;">Walchand College of Engineering - Final Year B.Tech IT ESE (50 Marks)</p>
+                        <div id="pyq-container" class="questions-list">
+                            <!-- PYQ Data injected here -->
                         </div>
                     </div>
                 </div>
